@@ -4,3 +4,6 @@ distributions:
   -
     profile: TW
     arch: x86_64
+  -
+    profile: TW
+    arch: aarch64
