@@ -7,7 +7,8 @@
         <specification>xclock build worker</specification>
     </description>
     <profiles>
-        <profile name="TW" description="For Tumbleweed"/>
+        <profile name="TW.x86_64" description="For Tumbleweed (x86_64)"/>
+        <profile name="TW.aarch64" description="For Tumbleweed (aarch64)"/>
     </profiles>
     <preferences>
         <version>1.1.1</version>
@@ -17,15 +18,15 @@
         <package name="rpm-build"/>
         <package name="rpm-devel"/>
     </packages>
-    <preferences profiles="TW">
+    <preferences profiles="TW.x86_64,TW.aarch64">
         <packagemanager>zypper</packagemanager>
         <rpm-excludedocs>true</rpm-excludedocs>
         <type image="tbz"/>
     </preferences>
-    <repository profiles="TW">
+    <repository profiles="TW.x86_64,TW.aarch64">
         <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
     </repository>
-    <packages type="bootstrap" profiles="TW">
+    <packages type="bootstrap" profiles="TW.x86_64,TW.aarch64">
         <package name="pkg-config"/>
         <package name="pkgconfig(x11)"/>
         <package name="pkgconfig(xaw7)"/>
