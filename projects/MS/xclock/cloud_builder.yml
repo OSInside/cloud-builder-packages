@@ -2,8 +2,8 @@ name: xclock
 
 distributions:
   -
-    profile: TW
+    dist: TW
     arch: x86_64
   -
-    profile: TW
+    dist: TW
     arch: aarch64
