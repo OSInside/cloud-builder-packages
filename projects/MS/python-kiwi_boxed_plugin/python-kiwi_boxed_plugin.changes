@@ -1,0 +1,1314 @@
+-------------------------------------------------------------------
+Wed Jun 23 16:03:03 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.13 → 0.2.14
+
+-------------------------------------------------------------------
+Tue Jun 22 20:16:11 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Use progressbar python module
+
+  As alternative to the no longer developed wget module
+  we are switching to the progressbar module. This requires
+  the code to fetch the data to be implemented through the
+  requests module to allow utilizing the progressbar as
+  it is designed. A nice after effect is that the progressbar
+  displayed is more sophisticated than the one before
+
+-------------------------------------------------------------------
+Mon Jun 21 15:58:15 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.12 → 0.2.13
+
+-------------------------------------------------------------------
+Mon Jun 21 15:57:10 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Make sure man pages are part of sdist tarball
+
+  The current tarball when uploaded to pypi via github actions
+  does not contain the manual pages because the doc target to
+  build them is not called. This commit runs the doc tox target
+  which is called prior pypi release. This Fixes #38
+
+-------------------------------------------------------------------
+Fri Jun 18 11:28:23 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Delete jing from fedora based boxes
+
+  The requires java is no longer provided
+  Problem: package jing-20151127-8.fc32.noarch requires java-headless >= 1.5.0,
+  but none of the providers can be installed
+
+-------------------------------------------------------------------
+Wed Jun 02 11:46:30 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.11 → 0.2.12
+
+-------------------------------------------------------------------
+Wed Jun 02 11:45:49 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Update box versions
+
+  Align box versions to the distribution version they are build for
+
+-------------------------------------------------------------------
+Wed Jun 02 11:06:12 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.10 → 0.2.11
+
+-------------------------------------------------------------------
+Tue Jun 01 23:35:26 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Show progress information on box download
+
+  Use the wget module to show a progress bar on download of
+  box files. The python-wget package is provided as package
+  in Virt:App:Builder|Staging
+
+-------------------------------------------------------------------
+Tue Jun 01 16:09:44 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Handle exit code from kiwi properly
+
+  The plugin returned with the exit code from the qemu call.
+  However, it would be better to return with the exit code
+  from kiwi. This commit handles the exit code from kiwi and
+  raises an exception if kiwi has failed inside of the box.
+  This Fixes #35
+
+-------------------------------------------------------------------
+Fri May 14 15:41:49 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Make sure jing is part of the boxes
+
+-------------------------------------------------------------------
+Fri May 14 15:41:24 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Delete obsolete suse box
+
+  The box was moved to tumbleweed
+
+-------------------------------------------------------------------
+Thu May 06 14:05:34 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.9 → 0.2.10
+
+-------------------------------------------------------------------
+Wed May 05 15:36:59 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed creation of the build command passed to kiwi
+
+  The provided data in 'kiwi_build_command_args' from the
+  doc string of the kiwi boxbuild command is passed on as argument
+  to the kiwi build command inside of the box.
+
+  However the argument list is not fully compatible because for
+  the boxbuild command 'kiwi_build_command_args' is the argument
+  to the '--' option whereas for the build command any element
+  of what was provided in 'kiwi_build_command_args' is an option + value
+  for the build command.
+
+  Therefore it was possible to say "-- --description=foo" which
+  ends up as '--description=foo' to be passed as one option without
+  value to the build command which of course does not exist.
+
+  To fix it, this pull request makes sure that the information given
+  in the 'kiwi_build_command_args' is parsed using docopt against
+  the kiwi.tasks.system_build doc string and the result
+  of that parsing operation is used to construct the kiwi build
+  command.
+
+  This Fixes #33
+
+-------------------------------------------------------------------
+Wed May 05 15:02:55 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.8 → 0.2.9
+
+-------------------------------------------------------------------
+Tue May 04 12:51:07 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Store box files in the users HOME
+
+  The boxbuild command is intented to be called as normal user
+  and not as root. The former location /var/tmp/kiwi/boxes pins
+  the permissions of the downloaded box files to the user who
+  did it first. This can lead to unexpected side effects when
+  different users on the same system uses boxbuild.
+  This Fixes #28
+
+-------------------------------------------------------------------
+Tue May 04 12:32:59 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Move to github actions
+
+-------------------------------------------------------------------
+Tue May 04 12:15:21 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Added --box-smp-cpus option
+
+  Allow to configure the number of CPUs to use in the
+  SMP setup. By default 4 CPUs are used but this might
+  not be a good value especially in nested VM environment
+  This Fixes #24
+
+-------------------------------------------------------------------
+Tue May 04 11:42:04 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Added more robust qemu binary lookup
+
+  Check for qemu-system-ARCH first. If this is missing check
+  for qemu-kvm if we are on the x86_64 architecture. If no
+  binary was found raise an exception. This Fixes #27
+
+-------------------------------------------------------------------
+Mon Apr 19 11:14:35 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.7 → 0.2.8
+
+-------------------------------------------------------------------
+Mon Apr 19 09:57:36 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Improve usage message regarding argument parsing
+
+  Provide better usage information to explain how the boxbuild
+  command differentiates between arguments for the boxbuild
+  command itself and arguments used for the build command that
+  runs inside of the box. This Fixes OSInside/kiwi#1779
+
+-------------------------------------------------------------------
+Tue Mar 23 10:03:35 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed DNS setup for universal box
+
+  The universal box got updated to Fedora33. In Fedora systemd-resolved
+  is now used for the DNS setup. This requires the systemd-resolved
+  service to be activated
+
+-------------------------------------------------------------------
+Tue Mar 23 10:00:33 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed DNS setup for fedora box
+
+  In Fedora systemd-resolved is now used for the DNS setup.
+  This requires the systemd-resolved service to be activated
+
+-------------------------------------------------------------------
+Mon Mar 22 15:10:32 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.6 → 0.2.7
+
+-------------------------------------------------------------------
+Mon Mar 22 15:10:13 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed character classes for sed expressions
+
+-------------------------------------------------------------------
+Fri Mar 19 15:29:51 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed fedora box
+
+  The fedora box was missing dbus-daemon which prevented
+  the network from starting up
+
+-------------------------------------------------------------------
+Mon Mar 08 17:29:59 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.5 → 0.2.6
+
+-------------------------------------------------------------------
+Mon Mar 08 17:22:50 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Make sure man pages are part of sdist tarball
+
+  The current tarball when uploaded to pypi via gitlab does
+  not contain the manual pages because the doc target to build
+  them is not called.
+
+-------------------------------------------------------------------
+Mon Feb 15 13:24:29 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.4 → 0.2.5
+
+-------------------------------------------------------------------
+Mon Feb 15 13:22:14 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Update README.rst with link to the documentation
+
+  Add a doc link to the README such that this information will
+  also be present on the pypi landing page
+
+-------------------------------------------------------------------
+Mon Feb 15 13:21:25 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed box fetcher
+
+  Don't fail if there is no previous box data like on fetching
+  a complete new box
+
+-------------------------------------------------------------------
+Sat Feb 13 22:21:19 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.3 → 0.2.4
+
+-------------------------------------------------------------------
+Sat Feb 13 22:20:43 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed packaging metadata for pypi
+
+-------------------------------------------------------------------
+Fri Feb 12 10:40:04 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.2 → 0.2.3
+
+-------------------------------------------------------------------
+Fri Feb 12 10:34:21 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Rename suse box to tumbleweed
+
+-------------------------------------------------------------------
+Fri Feb 12 10:32:06 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Added TumbleWeed Box
+
+  In fact this is a copy of the suse box. The name is misleading
+  and doesn't really tell what distro is used for the box
+
+-------------------------------------------------------------------
+Sat Feb 06 22:08:04 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Deleted proof of concept code
+
+  We have released several versions of the plugin and it
+  works great, no further need to keep the very first
+  concept coding
+
+-------------------------------------------------------------------
+Wed Feb 03 08:49:15 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.1 → 0.2.2
+
+-------------------------------------------------------------------
+Tue Feb 02 10:25:05 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Added aaa_base to suse box
+
+  On TW aaa_base is not pulled in by a dependency in obs.
+  It looks like the package is pulled in by a file provides which
+  is not resolved by obs. Thus the package needs to be added
+  explicitly
+
+-------------------------------------------------------------------
+Tue Feb 02 10:06:05 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed suse box
+
+  The suse box is based on TW and in that distro the python
+  packaging has changed to allow multiple python versions.
+  Unfortunately no care for backward compatibility has been
+  done which forces us to update the description
+
+-------------------------------------------------------------------
+Mon Feb 01 15:40:51 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Allow multi arch boxes to co-exist
+
+  Make sure the update check does not delete former boxes
+  of a different architecture
+
+-------------------------------------------------------------------
+Mon Feb 01 12:40:37 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Enable the arm architecture in boxbuild
+
+  Add new options --aarch64, --cpu and --machine which allows
+  to select and configure cross arch builds in particular for
+  the arm architecture in this commit. A box build for aarch64
+  now exists for our users and can be used with the proposed
+  changes. To allow a cross arch build for arm on x86 the
+  following command can be used
+
+  kiwi-ng system boxbuild \
+  --box universal --cpu cortex-a57 --machine virt -- ...
+
+-------------------------------------------------------------------
+Mon Feb 01 10:43:42 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fix EFI build for universal box
+
+  Use Fedora shim module and assign grub packages per arch
+
+-------------------------------------------------------------------
+Mon Feb 01 10:30:51 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Switching universal box to EFI
+
+  Allow to build for multiple architectures is easier when
+  using the EFI firmware and GPT
+
+-------------------------------------------------------------------
+Mon Feb 01 10:01:29 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed universal box package list
+
+  syslinux only exists on x86
+
+-------------------------------------------------------------------
+Thu Jan 28 11:56:26 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.2.0 → 0.2.1
+
+-------------------------------------------------------------------
+Thu Jan 28 09:03:27 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Add Leap Box
+
+  SUSE TW has switched the rpm database type such that building
+  for older SUSE distros requires an older box. Therefore an
+  extra Leap box is provided with this commit
+
+-------------------------------------------------------------------
+Tue Jan 26 08:41:32 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Check mount path prior mount
+
+  Use the mountpoint tool to check if the mountpoint
+  is already mounted. This allows to use run_kiwi inside
+  of the box in box-debug mode
+
+-------------------------------------------------------------------
+Fri Jan 22 09:42:59 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Added new kiwi-systemdeps
+
+  Add kiwi-systemdeps to boxes to make sure they contain
+  the needed tools and software to build images
+
+-------------------------------------------------------------------
+Fri Jan 15 15:22:01 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Update box descriptions to schema v7.3
+
+-------------------------------------------------------------------
+Thu Jan 14 16:07:20 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.18 → 0.2.0
+
+-------------------------------------------------------------------
+Fri Jan 01 20:29:15 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Added wicked explicitly in suse box
+
+-------------------------------------------------------------------
+Wed Dec 30 20:39:52 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added syslinux to fedora and universal box
+
+-------------------------------------------------------------------
+Tue Dec 29 21:23:42 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.17 → 0.1.18
+
+-------------------------------------------------------------------
+Tue Dec 29 16:47:36 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Add support for virtiofs sharing backend
+
+  In addition to the 9p default sharing backend this commit also
+  adds virtiofs as supported sharing backend. This Fixes #9
+
+-------------------------------------------------------------------
+Mon Dec 28 21:28:40 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Allow custom host path to be shared with the box
+
+  Added new option --shared-path to allow sharing a custom host
+  path with the box during image build time. The feature can be
+  used to e.g access host local repos when building via boxbuild.
+  This Fixes #12
+
+-------------------------------------------------------------------
+Tue Dec 15 11:43:45 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Delete traces of travis
+
+  Delete any references to travis
+
+-------------------------------------------------------------------
+Mon Dec 14 14:37:03 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.16 → 0.1.17
+
+-------------------------------------------------------------------
+Mon Dec 14 12:46:17 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixup gitlab pipeline triggers
+
+  Run unit tests in branches only but not in master.
+  Run release only on tags. We create tags only in master
+  thus no further exceptions other than on tags should
+  be needed.
+
+-------------------------------------------------------------------
+Mon Dec 14 12:30:57 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.15 → 0.1.16
+
+-------------------------------------------------------------------
+Mon Dec 14 12:30:08 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed default tox targets
+
+  release and devel are no default tox targets
+
+-------------------------------------------------------------------
+Mon Dec 14 12:25:50 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Run linter and unit tests only on branches
+
+-------------------------------------------------------------------
+Mon Dec 14 12:00:00 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.14 → 0.1.15
+
+-------------------------------------------------------------------
+Mon Dec 14 10:43:36 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fix upload to pypi
+
+  Use twine as suggested and run it in a tox environment.
+  Also store the pypi config on gitlab as encoded file
+
+-------------------------------------------------------------------
+Mon Dec 14 10:21:27 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.13 → 0.1.14
+
+-------------------------------------------------------------------
+Mon Dec 14 10:20:29 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Delete travis configuration
+
+-------------------------------------------------------------------
+Sun Dec 13 17:39:14 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Move CI system to gitlab
+
+  travis pisses me off with its strange open, kind of closed,
+  stupid process for opensource projects
+
+-------------------------------------------------------------------
+Sun Dec 13 17:26:05 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed shellcheck call
+
+  The file name run_kiwi has moved to images.sh
+
+-------------------------------------------------------------------
+Sun Dec 13 17:24:34 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.12 → 0.1.13
+
+-------------------------------------------------------------------
+Fri Dec 11 17:32:07 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Allow to use custom kiwi version for boxbuild
+
+  Add a new option --kiwi-version which causes the install
+  of the selected version of kiwi in the box and use it for
+  the build process. This commit also includes a refactoring
+  to avoid code duplication on the run_kiwi script code and
+  also cleanup/improves that code. This Fixes #13
+
+-------------------------------------------------------------------
+Fri Nov 20 12:57:45 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.11 → 0.1.12
+
+-------------------------------------------------------------------
+Fri Nov 20 12:53:23 CET 2020 - Neal Gompa <ngompa13@gmail.com>
+
+- Bump the setuptools metadata to require kiwi >= 9.21.21
+
+  This should have been done in c51f53c319c9a714f9441e127950c6e07d02d3e9,
+  but it was accidentally missed.
+
+-------------------------------------------------------------------
+Fri Nov 13 12:23:41 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added microdnf package manager to universal box
+
+-------------------------------------------------------------------
+Mon Nov 09 11:54:07 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.10 → 0.1.11
+
+-------------------------------------------------------------------
+Mon Nov 09 11:53:48 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed tox.ini
+
+  one left over python 3.7 reference
+
+-------------------------------------------------------------------
+Mon Nov 09 11:47:58 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.9 → 0.1.10
+
+-------------------------------------------------------------------
+Mon Nov 09 11:46:47 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Update tox and travis setup for python 3_8
+
+  Move latest python test target to 3.8 and also change
+  the deploy travis target to use python 3.8
+
+-------------------------------------------------------------------
+Mon Nov 09 10:22:54 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.8 → 0.1.9
+
+-------------------------------------------------------------------
+Mon Nov 09 10:21:38 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Box plugin requires kiwi >= 9.21.21
+
+  Due to the change in kiwi of the solver factory class, the
+  api has changed which requires to adapt the version constraint
+  of the plugin code
+
+-------------------------------------------------------------------
+Sat Nov 07 19:43:50 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added buildah tool to universal box
+
+  The universal box is based on Fedora. There we only have the
+  buildah tool available to build OCI compliant containers
+
+-------------------------------------------------------------------
+Sat Nov 07 19:33:08 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.7 → 0.1.8
+
+-------------------------------------------------------------------
+Sat Nov 07 19:31:51 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Adapt plugin code to new kiwi factory api
+
+  kiwi factories are moving to abstract constructors and
+  offer a new() method in the factories. This commit adapts
+  to the changed api
+
+-------------------------------------------------------------------
+Sat Nov 07 19:23:38 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.6 → 0.1.7
+
+-------------------------------------------------------------------
+Thu Nov 05 18:20:34 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed ubuntu box build
+
+-------------------------------------------------------------------
+Thu Nov 05 17:07:17 CET 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added universal box description and config
+
+  The universal box is based on Fedora and contains all
+  packages needed to build for the major Linux distributions.
+
+-------------------------------------------------------------------
+Fri Oct 09 20:33:07 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.5 → 0.1.6
+
+-------------------------------------------------------------------
+Fri Oct 09 16:00:53 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Switch update check to .report file
+
+  The obs service has changed the publisher to no longer
+  publish the kiwi generated .packages file. Instead obs
+  creates its own .report file. This commit changes the
+  plugin config to fetch the .report file
+
+-------------------------------------------------------------------
+Wed Aug 26 10:48:32 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.4 → 0.1.5
+
+-------------------------------------------------------------------
+Thu Aug 13 16:07:47 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added --no-snapshot option
+
+  Run box with snapshot mode switched off. This causes the
+  box disk file to be modified by the build process and allows
+  to keep a persistent package cache as part of the box.
+  The option can be used to increase the build performance
+  due to data stored in the box which doesn't have to be
+  reloaded from the network. On the contrary this option
+  invalidates the immutable box attribute and should be
+  used with care. On update of the box all data stored
+  will be wiped. To prevent this combine the option with
+  the --no-update-check option.
+
+-------------------------------------------------------------------
+Wed Jul 01 14:09:54 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.3 → 0.1.4
+
+-------------------------------------------------------------------
+Wed Jul 01 12:03:43 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Simulate an SMP system
+
+  Run the box with -smp. This calculates an SMP system and
+  speeds up any compression call which can run in parallel.
+  This Fixes #4
+
+-------------------------------------------------------------------
+Fri Jun 12 09:50:23 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Use kernel-default for suse box
+
+  The used kernel kernel-kvmsmall is lacking support for several
+  filesystems e.g fat and that leads to errors for a number of
+  image builds
+
+-------------------------------------------------------------------
+Tue May 26 11:50:11 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.2 → 0.1.3
+
+-------------------------------------------------------------------
+Tue May 26 10:20:55 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed spec file on bare word comparison
+
+  on e.g Fedora Rawhide rpm complains about bare word comparison
+  error: bare words are no longer supported, please use "..."
+  This patch fixes the spec template to respect this
+
+-------------------------------------------------------------------
+Tue May 19 14:24:33 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.1 → 0.1.2
+
+-------------------------------------------------------------------
+Tue May 19 12:11:56 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed reading of plugin config
+
+  The plugin config file contains the configuration of the box
+  files as we create it as a service for the users. It is not
+  meant to be edited by users in the first place. Therefore the
+  location in /etc is somewhat misleading. This commit moves
+  the basic box configuration to be part of the plugin source.
+  As also the box image descriptions are handled in this git
+  changes to the box setup and eventually to the plugin config
+  are now going together. As a possitive side effect this also
+  fixes the installation of the plugin from pip which did
+  not properly handle the custom install routine for the config
+  file when it is hosted in /etc.
+
+-------------------------------------------------------------------
+Mon May 18 18:26:33 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed default buildroot location in Makefile
+
+-------------------------------------------------------------------
+Mon May 18 13:48:23 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed travis yml syntax
+
+-------------------------------------------------------------------
+Mon May 18 13:28:34 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.1.0 → 0.1.1
+
+-------------------------------------------------------------------
+Mon May 18 13:28:02 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- update box config
+
+  ubuntu box was version bumped from 18.4 to 20.4
+
+-------------------------------------------------------------------
+Fri May 15 21:28:41 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- update ubuntu box version to match distro
+
+-------------------------------------------------------------------
+Fri May 15 17:27:29 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed name of btrfs tool package in ubuntu box
+
+  btrfs-tools is now btrfs-progs
+
+-------------------------------------------------------------------
+Fri May 15 17:20:56 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Switched to focal distro for ubuntu box
+
+-------------------------------------------------------------------
+Fri May 15 16:46:27 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Also added universe-update to ubuntu box
+
+-------------------------------------------------------------------
+Fri May 15 16:29:38 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added update repo in ubuntu box
+
+-------------------------------------------------------------------
+Wed May 13 14:37:51 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- added missing deploy stage in travis setup
+
+-------------------------------------------------------------------
+Wed May 13 14:36:55 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added pypi release on tags through travis
+
+-------------------------------------------------------------------
+Mon May 04 15:15:36 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.0.4 → 0.1.0
+
+-------------------------------------------------------------------
+Mon May 04 14:56:31 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added Cerberus schema for plugin config
+
+-------------------------------------------------------------------
+Mon May 04 10:15:32 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Handle shasum file outside of the config
+
+  The shasum file of the .packages file is created by the
+  plugin. It's not a file that exists as part of the box
+  build process in obs. Thus the file should not be managed
+  in kiwi_boxed_plugin.yml
+
+-------------------------------------------------------------------
+Sat May 02 20:59:34 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.0.3 → 0.0.4
+
+-------------------------------------------------------------------
+Sat May 02 19:55:21 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Allow box download to become interrupted
+
+  Download box files in an intermediate tmpdir which is going
+  to be moved in an atomic operation.
+
+-------------------------------------------------------------------
+Fri May 01 22:30:58 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.0.2 → 0.0.3
+
+-------------------------------------------------------------------
+Fri May 01 22:29:08 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Enable use of initrd for suse box
+
+  The switch of the box to Leap 15.1 causes the kvmsmall kernel
+  to no longer boot without an initrd. This only worked for
+  the TW kernel. The decision which system to use for the box
+  is still to be determined
+
+-------------------------------------------------------------------
+Fri May 01 22:21:26 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Allow to configure use of initrd
+
+-------------------------------------------------------------------
+Fri May 01 19:47:45 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- User Builder repo for boxes not Staging
+
+-------------------------------------------------------------------
+Fri May 01 19:18:32 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added iproute2 to suse box
+
+-------------------------------------------------------------------
+Fri May 01 19:08:59 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Allow help command to be called
+
+-------------------------------------------------------------------
+Fri May 01 18:02:22 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 0.0.1 → 0.0.2
+
+-------------------------------------------------------------------
+Fri May 01 18:02:02 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed bumpversion config
+
+  wrong path to version file and missing doc version file
+
+-------------------------------------------------------------------
+Wed Apr 22 18:01:50 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added boxbuild man page
+
+-------------------------------------------------------------------
+Wed Apr 22 15:37:02 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added missing packages to suse box
+
+  jing and gfxboot for better xml validation errors and
+  iso image builds
+
+-------------------------------------------------------------------
+Tue Apr 21 17:45:10 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added checkmedia to suse box
+
+-------------------------------------------------------------------
+Sun Apr 19 18:13:25 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added symlink-resolvconf service in ubuntu box
+
+-------------------------------------------------------------------
+Sun Apr 19 17:51:10 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixup config.sh
+
+  delete resolv.conf prior creating a new one
+
+-------------------------------------------------------------------
+Sun Apr 19 16:17:48 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Create resolver link in ubuntu box
+
+-------------------------------------------------------------------
+Sat Apr 18 22:14:22 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Set dns config in ubuntu box
+
+-------------------------------------------------------------------
+Sat Apr 18 22:01:10 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Correctly disable lvmetad
+
+-------------------------------------------------------------------
+Sat Apr 18 17:15:42 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- fixed netplan setup
+
+-------------------------------------------------------------------
+Fri Apr 17 23:13:20 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Use netplan.io for ubuntu box
+
+-------------------------------------------------------------------
+Fri Apr 17 22:22:48 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed interface config in ubuntu box
+
+-------------------------------------------------------------------
+Fri Apr 17 21:29:16 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Install network dispatcher on ubuntu
+
+-------------------------------------------------------------------
+Fri Apr 17 21:26:13 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- ubuntu needs networkd
+
+-------------------------------------------------------------------
+Fri Apr 17 16:48:26 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added network tools to ubuntu box
+
+-------------------------------------------------------------------
+Fri Apr 17 16:46:43 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- More robust extraction of kiwi params from cmdline
+
+-------------------------------------------------------------------
+Fri Apr 17 16:24:14 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added debug switch
+
+-------------------------------------------------------------------
+Fri Apr 17 14:47:43 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Add Ubuntu build box
+
+-------------------------------------------------------------------
+Fri Apr 17 11:59:17 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed package build
+
+  no C code included thus package can be noarch and
+  no gcc is needed to build the package
+
+-------------------------------------------------------------------
+Fri Apr 17 11:02:54 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed package build
+
+  qemu-kvm and PyYAML required
+
+-------------------------------------------------------------------
+Fri Apr 17 10:35:42 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Better error checking
+
+  Raise properly on unknown boxes
+
+-------------------------------------------------------------------
+Thu Apr 16 23:15:30 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Complete boxbuild task code
+
+  Finally allow to build with boxbuild. Tested the with
+  the following command line
+
+  kiwi-ng --type vmx system boxbuild \
+  --box suse -- --description suse-leap-15.2-JeOS \
+  --target-dir /tmp/myimage
+
+-------------------------------------------------------------------
+Thu Apr 16 18:19:50 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added kiwi build command validation
+
+  The kiwi boxbuild command specifies a kiwi build command.
+  The validation of that kiwi build command should be done
+  prior calling kiwi in the VM
+
+-------------------------------------------------------------------
+Tue Apr 14 11:01:03 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added mem and initrd handling to BoxBuild class
+
+-------------------------------------------------------------------
+Tue Apr 14 00:13:57 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added doc strings for public interface
+
+-------------------------------------------------------------------
+Mon Apr 13 23:57:56 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added BoxBuild class
+
+-------------------------------------------------------------------
+Mon Apr 13 15:15:52 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Moved download directory
+
+  /var/cache is only writable by root but we want the plugin
+  to allow to run as normal user. Thus use /var/tmp
+
+-------------------------------------------------------------------
+Sun Apr 12 20:10:27 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added listing boxes
+
+-------------------------------------------------------------------
+Sat Apr 11 20:02:48 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- minor changes on the poc scripts
+
+  Make sure qemu uses a different tmpdir. qemu stores
+  snapshots in /tmp and eats away the memory there.
+  Typically /tmp is a tmpfs and thus has its limitations.
+  We have to take that into account when writing the
+  plugin code that starts qemu
+
+-------------------------------------------------------------------
+Sat Apr 11 17:07:17 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- performance tweaks for qcow2
+
+-------------------------------------------------------------------
+Sat Apr 11 17:03:39 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- play with cache options in poc run script
+
+-------------------------------------------------------------------
+Sat Apr 11 16:08:22 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed package list for fedora box
+
+-------------------------------------------------------------------
+Sat Apr 11 16:07:06 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- disable selinux on box start in poc of fedora test
+
+-------------------------------------------------------------------
+Sat Apr 11 16:04:26 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added set permissive se linux policy
+
+-------------------------------------------------------------------
+Sat Apr 11 15:32:02 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Don't build below /tmp in a VM
+
+  /tmp is a tmpfs on almost all distros which limits the
+  available size and invalidates the use of the snapshot
+  setup of the VM
+
+-------------------------------------------------------------------
+Sat Apr 11 09:30:16 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed repo setup
+
+-------------------------------------------------------------------
+Sat Apr 11 09:24:09 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Changed box size
+
+-------------------------------------------------------------------
+Fri Apr 10 19:32:26 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed package build
+
+-------------------------------------------------------------------
+Fri Apr 10 19:28:04 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added doc sources for man page
+
+-------------------------------------------------------------------
+Fri Apr 10 19:12:51 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Package build fixes
+
+-------------------------------------------------------------------
+Fri Apr 10 18:51:46 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Increase storage capacity
+
+-------------------------------------------------------------------
+Fri Apr 10 18:32:42 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Give the VM enough memory
+
+-------------------------------------------------------------------
+Fri Apr 10 17:50:31 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added option to select box architecture
+
+-------------------------------------------------------------------
+Fri Apr 10 17:41:36 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Changed layout of configuration file
+
+  Add files that could be arch specific under an arch section.
+  Also rename the config file to /etc/kiwi_boxed_plugin.yml
+
+-------------------------------------------------------------------
+Fri Apr 10 17:18:26 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added NetworkManager to fedora box
+
+-------------------------------------------------------------------
+Fri Apr 10 17:12:35 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed interface name in network setup
+
+-------------------------------------------------------------------
+Fri Apr 10 15:42:17 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- fixed network setup in fedora box
+
+-------------------------------------------------------------------
+Fri Apr 10 14:53:17 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- fixed initrd extraction
+
+-------------------------------------------------------------------
+Thu Apr 09 22:17:12 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- move to obsrepos for fedora
+
+-------------------------------------------------------------------
+Thu Apr 09 22:01:19 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- move run_kiwi to usr/local/bin
+
+-------------------------------------------------------------------
+Thu Apr 09 21:52:08 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- add run_kiwi as copy not as hardlink
+
+-------------------------------------------------------------------
+Thu Apr 09 21:38:35 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- test delete bin
+
+-------------------------------------------------------------------
+Thu Apr 09 21:19:59 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- move to repo list in XML for fedora
+
+-------------------------------------------------------------------
+Thu Apr 09 17:12:32 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added loading of initrd in box download
+
+  For those distros that do not provide a kernel with builtin
+  virtio drivers we need the initrd
+
+-------------------------------------------------------------------
+Thu Apr 09 15:39:29 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Update script permissions of config.sh for fedora
+
+-------------------------------------------------------------------
+Thu Apr 09 15:17:05 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Move fedora build to service
+
+-------------------------------------------------------------------
+Thu Apr 09 14:47:12 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added poc scripts to run fedora box
+
+-------------------------------------------------------------------
+Thu Apr 09 14:17:29 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- config.sh permissions fix
+
+-------------------------------------------------------------------
+Thu Apr 09 14:04:54 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- keep repos for fedora in kiwi XML
+
+-------------------------------------------------------------------
+Thu Apr 09 13:37:02 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Update fedora box description
+
+-------------------------------------------------------------------
+Thu Apr 09 13:12:19 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Enable script debugging for fedora box
+
+-------------------------------------------------------------------
+Thu Apr 09 12:17:43 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Update unit tests
+
+  Use the same box location in the test compared to the obs setup
+
+-------------------------------------------------------------------
+Thu Apr 09 12:15:22 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Finally fix btrfs package name for fedora
+
+-------------------------------------------------------------------
+Thu Apr 09 12:13:41 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Fixed btrfs package name for fedora
+
+-------------------------------------------------------------------
+Thu Apr 09 12:11:08 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added Fedora box
+
+-------------------------------------------------------------------
+Wed Apr 08 21:43:50 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added BoxDownload class
+
+-------------------------------------------------------------------
+Tue Apr 07 19:10:12 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added reading of box config file
+
+-------------------------------------------------------------------
+Mon Apr 06 18:28:20 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added build status indicator
+
+-------------------------------------------------------------------
+Mon Apr 06 18:24:36 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added travis script
+
+-------------------------------------------------------------------
+Mon Apr 06 18:00:04 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added unit tests
+
+-------------------------------------------------------------------
+Mon Apr 06 17:38:58 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added install target for man page and box config
+
+-------------------------------------------------------------------
+Mon Apr 06 17:31:21 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added python sdist manifest
+
+-------------------------------------------------------------------
+Mon Apr 06 17:27:28 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Add box definition file
+
+-------------------------------------------------------------------
+Mon Apr 06 15:08:44 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added better build command args handling
+
+  Allow for the boxbuild command to be specified like this
+  system boxbuild --box name -- --description ... --target-dir ...
+
+-------------------------------------------------------------------
+Mon Apr 06 12:40:47 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added poc (proof of concept) directory
+
+  Provide data we used to proof the concept to work.
+
+-------------------------------------------------------------------
+Mon Apr 06 12:36:27 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Hard link run_kiwi
+
+-------------------------------------------------------------------
+Mon Apr 06 12:31:24 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Move run_kiwi script to tools directory
+
+-------------------------------------------------------------------
+Mon Apr 06 12:24:48 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- sort boxes under architecture
+
+-------------------------------------------------------------------
+Mon Apr 06 12:22:26 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Added suse box image description
+
+-------------------------------------------------------------------
+Fri Apr 03 13:32:10 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- No need for bridge interface setup
+
+  We will use kvm userspace networking
+
+-------------------------------------------------------------------
+Thu Apr 02 18:16:24 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Prepare for package build
+
+-------------------------------------------------------------------
+Thu Apr 02 17:29:44 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Changed url for looking up box names
+
+-------------------------------------------------------------------
+Thu Apr 02 17:03:52 CEST 2020 - Marcus Schäfer <ms@suse.de>
+
+- Setup plugin infrastructure
+
