@@ -46,5 +46,6 @@
         <package name="python3-devel"/>
         <package name="python3-setuptools"/>
         <package name="fdupes"/>
+        <package name="bash"/>
     </packages>
 </image>
