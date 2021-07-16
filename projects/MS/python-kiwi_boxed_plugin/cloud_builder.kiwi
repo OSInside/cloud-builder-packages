@@ -47,5 +47,7 @@
         <package name="python3-setuptools"/>
         <package name="fdupes"/>
         <package name="bash"/>
+        <package name="util-linux"/>
+        <package name="make"/>
     </packages>
 </image>
