@@ -40,9 +40,11 @@
     <packages type="bootstrap" profiles="TW.x86_64,TW.aarch64">
         <package name="python3-devel"/>
         <package name="python3-setuptools"/>
+        <package name="fdupes"/>
     </packages>
     <packages type="bootstrap" profiles="Fedora34.x86_64">
         <package name="python3-devel"/>
         <package name="python3-setuptools"/>
+        <package name="fdupes"/>
     </packages>
 </image>
