@@ -1,0 +1,18 @@
+schema_version: 0.1
+name: qbiff
+
+distributions:
+  -
+    dist: TW
+    arch: x86_64
+    runner_group: suse
+
+  -
+    dist: Leap15-2
+    arch: x86_64
+    runner_group: suse
+
+  -
+    dist: Leap15-3
+    arch: x86_64
+    runner_group: suse

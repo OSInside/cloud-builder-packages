@@ -1,0 +1,130 @@
+-------------------------------------------------------------------
+Wed Apr 21 09:44:09 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Update certs
+
+-------------------------------------------------------------------
+Sun Jan 24 21:26:02 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Ignore empty lines
+
+-------------------------------------------------------------------
+Sun Jan 24 21:21:59 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed client shutdown
+
+-------------------------------------------------------------------
+Sun Jan 24 20:08:30 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- print message on SSL_shutdown
+
+-------------------------------------------------------------------
+Sun Jan 24 19:49:39 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Try code for notification system
+
+-------------------------------------------------------------------
+Sun Jan 24 18:58:30 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Refactor notify event support
+
+  Move this into its own method sending a folderChanged signal
+
+-------------------------------------------------------------------
+Sun Jan 24 17:25:53 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Cleanup and memory leak fixes
+
+-------------------------------------------------------------------
+Thu Jan 21 13:20:00 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Send folder status only if there are changes
+
+  The polling has sent the folder status every second even
+  if there was nothing to do. Only send data when needed
+
+-------------------------------------------------------------------
+Sat Jan 09 20:24:27 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Rewrite qbiff
+
+  Different design to avoid race conditions with the former
+  thread design. Also more robust regarding massive notify
+  events
+
+-------------------------------------------------------------------
+Sat Jan 09 16:50:37 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Add some sleeps and it sucks
+
+  The concept of qbiff using signal/slots in QThreads is a
+  broken design. This code os not thread safe and leads to
+  issues if lots of notify events occurs in a short time.
+  The sleep stuff here just decreases the number of fails.
+  Overall this needs a fundamental redesign
+
+-------------------------------------------------------------------
+Fri Jan 08 22:39:56 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed mail counting
+
+  Events occur in undefined order. The current way of
+  increment/decrement was broken by design
+
+-------------------------------------------------------------------
+Fri Jan 08 20:02:53 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed unaligned pointer access
+
+-------------------------------------------------------------------
+Thu Jan 07 20:23:38 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Fixed update folder check
+
+-------------------------------------------------------------------
+Thu Jan 07 13:58:39 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Bump version: 7.2 → 7.3
+
+-------------------------------------------------------------------
+Wed Jan 06 20:01:11 CET 2021 - Marcus Schäfer <ms@suse.de>
+
+- Update to Qt5
+
+  Also fixed transparent status window display on buttons
+
+-------------------------------------------------------------------
+Thu Feb 01 08:56:56 CET 2018 - Marcus Schäfer <ms@suse.de>
+
+- Fixed postun
+
+-------------------------------------------------------------------
+Thu Feb 01 08:47:24 CET 2018 - Marcus Schäfer <ms@suse.de>
+
+- Fixup service post script
+
+-------------------------------------------------------------------
+Thu Feb 01 08:43:50 CET 2018 - Marcus Schäfer <ms@suse.de>
+
+- Fixup requires
+
+-------------------------------------------------------------------
+Thu Feb 01 08:36:08 CET 2018 - Marcus Schäfer <ms@suse.de>
+
+- Fixed fillup setup in spec file
+
+-------------------------------------------------------------------
+Thu Aug 25 14:11:49 CEST 2016 - Marcus Schäfer <ms@suse.com>
+
+- Update changelog entry
+
+-------------------------------------------------------------------
+Thu Aug 25 14:05:08 CEST 2016 - Marcus Schäfer <ms@suse.com>
+
+- Use FontMetrics to calculate fixed button width
+
+-------------------------------------------------------------------
+Wed Nov 19 12:44:00 CET 2014 - Marcus Schäfer <ms@suse.de>
+
+- add systemd to buildrequires
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.4" name="qbiff">
+    <description type="system">
+        <author>Packager Name</author>
+        <contact>packager@example.com</contact>
+        <specification>qbiff package</specification>
+    </description>
+    <profiles>
+        <profile name="TW.x86_64" description="For Tumbleweed (x86_64)"/>
+        <profile name="Leap15-3.x86_64" description="For Leap 15.3 (x86_64)"/>
+        <profile name="Leap15-2.x86_64" description="For Leap 15.2 (x86_64)"/>
+    </profiles>
+    <preferences>
+        <version>7.3.0</version>
+    </preferences>
+    <packages type="bootstrap">
+        <package name="build"/>
+        <package name="rpm-build"/>
+        <package name="rpm-devel"/>
+    </packages>
+    <preferences profiles="TW.x86_64,Leap15-3.x86_64,Leap15-2.x86_64">
+        <packagemanager>zypper</packagemanager>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <type image="tbz"/>
+    </preferences>
+    <repository profiles="TW.x86_64">
+        <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
+    </repository>
+    <repository profiles="Leap15-3.x86_64">
+        <source path="http://download.opensuse.org/distribution/leap/15.3/repo/oss"/>
+    </repository>
+    <repository profiles="Leap15-2.x86_64">
+        <source path="http://download.opensuse.org/distribution/leap/15.2/repo/oss"/>
+    </repository>
+    <packages type="bootstrap" profiles="TW.x86_64,Leap15-3.x86_64,Leap15-2.x86_64">
+        <package name="fdupes"/>
+        <package name="openssl"/>
+        <package name="libXtst-devel"/>
+        <package name="kconfigwidgets-devel"/>
+        <package name="ki18n-devel"/>
+        <package name="kwallet-devel"/>
+        <package name="libopenssl-devel"/>
+        <package name="cmake"/>
+        <package name="extra-cmake-modules"/>
+        <package name="systemd"/>
+        <package name="systemd-rpm-macros"/>
+        </packages>
+</image>

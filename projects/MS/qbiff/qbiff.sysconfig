@@ -1,0 +1,44 @@
+## Description: qbiff Configuration
+## Type:    string
+## Default: "$HOME/Mail"
+#
+# qbiff options
+#
+QBIFF_FOLDER="$HOME/Home/mail"
+
+## Type:    string
+## Default: "localhost"
+#
+#  server IP or name for SSL post connection check
+#
+QBIFF_SERVER="localhost"
+
+## Type:    string
+## Default: "$HOME/.qbiffrc.data"
+#
+#  server password file, add "linux" as content by default
+#  of course I recommend to change the certificates and use
+#  your own ones
+#
+QBIFF_SERVER_PWD="$HOME/.qbiffrc.data"
+
+## Type:    integer
+## Default: 17142
+#
+#  server port
+#
+QBIFF_PORT=17142
+
+## Type:    string
+## Default: "system"
+#
+#  select font family name for the buttons
+#
+QBIFF_FONT="DejaVu Serif"
+
+## Type:    integer
+## Default: 10
+#
+#  select font size for the buttons
+#
+QBIFF_FONTSIZE=8
