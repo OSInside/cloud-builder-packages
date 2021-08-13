@@ -1,4 +1,20 @@
 -------------------------------------------------------------------
+Tue Jul 20 15:46:53 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Disable SELinux when building in the box
+
+  for SELinux managed systems the enforcing rule
+  set does not allow to e.g create a new rpm database.
+  Also other restrictions drives us crazy when building
+  images. Therefore in the boxes we don't need this
+  sort of security. This is related to Issue OSInside/kiwi#1891
+
+-------------------------------------------------------------------
+Fri Jul 02 15:00:24 CEST 2021 - Marcus Schäfer <ms@suse.de>
+
+- Delete use of obsolete config functions
+
+-------------------------------------------------------------------
 Wed Jun 23 16:03:03 CEST 2021 - Marcus Schäfer <ms@suse.de>
 
 - Bump version: 0.2.13 → 0.2.14
