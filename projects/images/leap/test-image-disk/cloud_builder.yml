@@ -1,0 +1,7 @@
+schema_version: 0.1
+name: test-image-disk
+
+images:
+  -
+    arch: x86_64
+    runner_group: suse
