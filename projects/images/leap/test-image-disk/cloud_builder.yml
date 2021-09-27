@@ -5,3 +5,5 @@ images:
   -
     arch: x86_64
     runner_group: suse
+    selection:
+      name: standard
