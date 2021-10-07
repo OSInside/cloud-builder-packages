@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.4" name="python-kiwi">
+    <description type="system">
+        <author>Packager Name</author>
+        <contact>packager@example.com</contact>
+        <specification>python-kiwi build worker</specification>
+    </description>
+    <profiles>
+        <profile name="focal.x86_64" description="For Ubuntu Focal (x86_64)"/>
+    </profiles>
+    <preferences>
+        <version>9.24.0</version>
+    </preferences>
+    <preferences>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <type image="tbz"/>
+    </preferences>
+    <preferences profiles="focal.x86_64">
+        <packagemanager>apt</packagemanager>
+    </preferences>
+    <repository type="apt-deb" repository_gpgcheck="false" profiles="focal.x86_64">
+        <source path="obs://Ubuntu:debbuild/Ubuntu_20.04"/>
+    </repository>
+    <repository type="apt-deb" repository_gpgcheck="false" profiles="focal.x86_64">
+        <source path="obs://Virtualization:Appliances:Staging/xUbuntu_20.04"/>
+    </repository>
+    <repository type="apt-deb" alias="Focal-security" distribution="focal-security" components="main multiverse restricted universe" repository_gpgcheck="false" profiles="focal.x86_64">
+        <source path="http://security.ubuntu.com/ubuntu"/>
+    </repository>
+    <repository type="apt-deb" alias="Focal-updates" distribution="focal-updates" components="main multiverse restricted universe" repository_gpgcheck="false" profiles="focal.x86_64">
+        <source path="http://us.archive.ubuntu.com/ubuntu/"/>
+    </repository>
+    <repository type="apt-deb" alias="Focal" distribution="focal" components="main multiverse restricted universe" repository_gpgcheck="false" profiles="focal.x86_64">
+        <source path="http://us.archive.ubuntu.com/ubuntu/"/>
+    </repository>
+    <packages type="bootstrap" profiles="focal.x86_64">
+        <package name="gcc"/>
+        <package name="passwd"/>
+        <package name="dracut"/>
+        <package name="python3"/>
+	<package name="python3-pkg-resources"/>
+        <package name="python3-setuptools"/>
+	<package name="python3-dev"/>
+        <package name="obs-build"/>
+        <package name="fdupes"/>
+    </packages>
+    <packages type="image" profiles="focal.x86_64">
+        <package name="debbuild"/>
+        <package name="devscripts"/>
+        <package name="debconf"/>
+        <package name="gnupg"/>
+	<package name="nano"/>
+        <archive name="cloud_builder.debbuild.tgz"/>
+    </packages>	  
+</image>

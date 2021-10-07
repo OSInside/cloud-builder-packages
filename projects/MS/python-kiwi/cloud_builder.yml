@@ -1,0 +1,8 @@
+schema_version: 0.1
+name: python-kiwi
+
+distributions:
+  -
+    dist: focal
+    arch: x86_64
+    runner_group: debian
