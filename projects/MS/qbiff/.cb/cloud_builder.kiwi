@@ -12,16 +12,10 @@
         <profile name="Leap15-2.x86_64" description="For Leap 15.2 (x86_64)"/>
     </profiles>
     <preferences>
-        <version>7.3.0</version>
+        <version>0.0.0</version>
     </preferences>
-    <packages type="bootstrap">
-        <package name="build"/>
-        <package name="rpm-build"/>
-        <package name="rpm-devel"/>
-    </packages>
     <preferences profiles="TW.x86_64,Leap15-3.x86_64,Leap15-2.x86_64">
         <packagemanager>zypper</packagemanager>
-        <rpm-excludedocs>true</rpm-excludedocs>
         <type image="tbz"/>
     </preferences>
     <repository profiles="TW.x86_64">
@@ -33,6 +27,11 @@
     <repository profiles="Leap15-2.x86_64">
         <source path="http://download.opensuse.org/distribution/leap/15.2/repo/oss"/>
     </repository>
+    <packages type="bootstrap">
+        <package name="build"/>
+        <package name="rpm-build"/>
+        <package name="rpm-devel"/>
+    </packages>
     <packages type="bootstrap" profiles="TW.x86_64,Leap15-3.x86_64,Leap15-2.x86_64">
         <package name="fdupes"/>
         <package name="openssl"/>

@@ -11,15 +11,9 @@
         <profile name="Fedora34.x86_64" description="For Fedora34 (x86_64)"/>
     </profiles>
     <preferences>
-        <version>0.2.14</version>
+        <version>0.0.0</version>
     </preferences>
-    <packages type="bootstrap">
-        <package name="build"/>
-        <package name="rpm-build"/>
-        <package name="rpm-devel"/>
-    </packages>
     <preferences>
-        <rpm-excludedocs>true</rpm-excludedocs>
         <type image="tbz"/>
     </preferences>
     <preferences profiles="TW.x86_64">
@@ -35,11 +29,17 @@
         <source path="http://mirrors.eze.sysarmy.com/fedora/linux/releases/34/Everything/x86_64/os/"/>
     </repository>
     <packages type="bootstrap" profiles="TW.x86_64,TW.aarch64">
+        <package name="build"/>
+        <package name="rpm-build"/>
+        <package name="rpm-devel"/>
         <package name="python3-devel"/>
         <package name="python3-setuptools"/>
         <package name="fdupes"/>
     </packages>
     <packages type="bootstrap" profiles="Fedora34.x86_64">
+        <package name="build"/>
+        <package name="rpm-build"/>
+        <package name="rpm-devel"/>
         <package name="python3-devel"/>
         <package name="python3-setuptools"/>
         <package name="fdupes"/>

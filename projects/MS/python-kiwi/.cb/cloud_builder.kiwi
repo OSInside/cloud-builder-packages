@@ -10,10 +10,9 @@
         <profile name="focal.x86_64" description="For Ubuntu Focal (x86_64)"/>
     </profiles>
     <preferences>
-        <version>9.24.0</version>
+        <version>0.0.0</version>
     </preferences>
     <preferences>
-        <rpm-excludedocs>true</rpm-excludedocs>
         <type image="tbz"/>
     </preferences>
     <preferences profiles="focal.x86_64">
@@ -39,9 +38,9 @@
         <package name="passwd"/>
         <package name="dracut"/>
         <package name="python3"/>
-	<package name="python3-pkg-resources"/>
+	    <package name="python3-pkg-resources"/>
         <package name="python3-setuptools"/>
-	<package name="python3-dev"/>
+	    <package name="python3-dev"/>
         <package name="obs-build"/>
         <package name="fdupes"/>
     </packages>
@@ -50,7 +49,6 @@
         <package name="devscripts"/>
         <package name="debconf"/>
         <package name="gnupg"/>
-	<package name="nano"/>
-        <archive name="cloud_builder.debbuild.tgz"/>
+	    <package name="nano"/>
     </packages>	  
 </image>
