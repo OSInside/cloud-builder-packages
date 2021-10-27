@@ -3,6 +3,6 @@ name: kiwi-debian
 
 distributions:
   -
-    dist: focal
+    dist: unstable
     arch: x86_64
     runner_group: debian
