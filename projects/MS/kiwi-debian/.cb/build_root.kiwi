@@ -25,11 +25,10 @@
         <source path="obs://Virtualization:Appliances:Staging/Debian_Unstable"/>
     </repository>
     <packages type="bootstrap" profiles="unstable.x86_64">
-        <package name="passwd"/>
-        <package name="obs-build"/>
         <package name="fdupes"/>
     </packages>
     <packages type="image" profiles="unstable.x86_64">
+        <package name="obs-build"/>
         <package name="gcc"/>		     
         <package name="devscripts"/>
         <package name="debconf"/>
