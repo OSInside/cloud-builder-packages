@@ -4,6 +4,6 @@ name: test-image-disk
 images:
   -
     arch: x86_64
-    runner_group: suse
+    runner_group: fedora
     selection:
       name: standard
