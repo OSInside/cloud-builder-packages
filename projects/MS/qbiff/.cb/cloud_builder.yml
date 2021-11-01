@@ -5,7 +5,7 @@ distributions:
   -
     dist: TW
     arch: x86_64
-    runner_group: suse
+    runner_group: fedora
 
   -
     dist: Leap15-2
