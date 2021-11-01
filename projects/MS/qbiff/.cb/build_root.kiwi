@@ -32,7 +32,7 @@
         <package name="rpm-build"/>
         <package name="rpm-devel"/>
     </packages>
-    <packages type="bootstrap" profiles="TW.x86_64,Leap15-3.x86_64,Leap15-2.x86_64">
+    <packages type="image" profiles="TW.x86_64,Leap15-3.x86_64,Leap15-2.x86_64">
         <package name="fdupes"/>
         <package name="openssl"/>
         <package name="libXtst-devel"/>
