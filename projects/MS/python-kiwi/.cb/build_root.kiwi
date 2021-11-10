@@ -22,7 +22,7 @@
         <source path="obs://Ubuntu:debbuild/Ubuntu_20.04"/>
     </repository>
     <repository type="apt-deb" repository_gpgcheck="false" profiles="focal.x86_64">
-        <source path="obs://Virtualization:Appliances:Staging/xUbuntu_20.04"/>
+        <source path="obs://Virtualization:Appliances:CloudBuilder/xUbuntu_20.04"/>
     </repository>
     <repository type="apt-deb" alias="Focal-security" distribution="focal-security" components="main multiverse restricted universe" repository_gpgcheck="false" profiles="focal.x86_64">
         <source path="http://security.ubuntu.com/ubuntu"/>

@@ -22,7 +22,7 @@
         <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
     </repository>
     <repository type="apt-deb" repository_gpgcheck="false" profiles="unstable.x86_64">
-        <source path="obs://Virtualization:Appliances:Staging/Debian_Unstable"/>
+        <source path="obs://Virtualization:Appliances:CloudBuilder/Debian_Unstable"/>
     </repository>
     <packages type="bootstrap" profiles="unstable.x86_64">
         <package name="fdupes"/>
