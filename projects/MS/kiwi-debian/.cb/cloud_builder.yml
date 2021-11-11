@@ -5,4 +5,4 @@ distributions:
   -
     dist: unstable
     arch: x86_64
-    runner_group: debian
+    runner_group: fedora

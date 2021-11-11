@@ -10,9 +10,9 @@ distributions:
   -
     dist: Leap15-2
     arch: x86_64
-    runner_group: suse
+    runner_group: fedora
 
   -
     dist: Leap15-3
     arch: x86_64
-    runner_group: suse
+    runner_group: fedora
