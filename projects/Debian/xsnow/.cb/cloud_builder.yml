@@ -1,8 +1,8 @@
 schema_version: 0.1
-name: kiwi-debian
+name: xsnow
 
 distributions:
   -
     dist: unstable
     arch: x86_64
-    runner_group: fedora
+    runner_group: debian

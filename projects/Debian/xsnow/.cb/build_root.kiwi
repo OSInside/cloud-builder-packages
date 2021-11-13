@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="7.4" name="kiwi-debian">
+<image schemaversion="7.4" name="xsnow">
     <description type="system">
         <author>Packager Name</author>
         <contact>packager@example.com</contact>
-        <specification>environment to build kiwi on Debian Unstable</specification>
+        <specification>environment to build xsnow</specification>
     </description>
     <profiles>
         <profile name="unstable.x86_64" description="For Debian Unstable (x86_64)"/>
@@ -22,35 +22,22 @@
         <source path="http://ftp.halifax.rwth-aachen.de/debian"/>
     </repository>
     <repository type="apt-deb" repository_gpgcheck="false" profiles="unstable.x86_64">
-        <source path="obs://Virtualization:Appliances:CloudBuilder/Debian_Unstable"/>
+        <source path="obs://Virtualization:Appliances:Staging/Debian_Unstable"/>
     </repository>
     <packages type="bootstrap" profiles="unstable.x86_64">
         <package name="fdupes"/>
     </packages>
     <packages type="image" profiles="unstable.x86_64">
         <package name="obs-build"/>
-        <package name="gcc"/>		     
         <package name="devscripts"/>
         <package name="debconf"/>
-        <package name="gnupg"/>
-   	    <package name="nano"/>
-        <package name="python3"/>
-        <package name="python3-pkg-resources"/>
-        <package name="python3-dev"/>
-        <package name="python3-all"/>
-        <package name="python3-docopt"/>
-        <package name="python3-lxml"/>
-        <package name="python3-mock"/>
-        <package name="python3-pytest"/>
-        <package name="python3-pyxattr"/>
-        <package name="python3-requests"/>
-        <package name="python3-setuptools"/>
-        <package name="python3-sphinx"/>
-        <package name="python3-sphinx-rtd-theme"/>
-        <package name="python3-yaml"/>
-        <package name="python3-testinfra"/>
-<!-- this package is required but currently WIP, https://www.debian.org/devel/wnpp/prospective.de.html
-        <package name="python3-anymarkup"/>
--->
+        <package name="debhelper"/>
+        <package name="libx11-dev"/>
+        <package name="libxpm-dev"/>
+        <package name="libxt-dev"/>
+        <package name="pkg-config"/>
+        <package name="libxml2-dev"/>
+        <package name="libgtk-3-dev"/>
+        <package name="debhelper-compat"/>
     </packages>	  
 </image>

@@ -1,0 +1,8 @@
+schema_version: 0.1
+name: kiwi
+
+distributions:
+  -
+    dist: unstable
+    arch: x86_64
+    runner_group: fedora
