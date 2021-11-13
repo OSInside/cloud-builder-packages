@@ -28,7 +28,7 @@
         <package name="fdupes"/>
     </packages>
     <packages type="image" profiles="unstable.x86_64">
-        <package name="build-essential:native"/>
+        <package name="build-essential"/>
         <package name="obs-build"/>
         <package name="devscripts"/>
         <package name="debconf"/>
