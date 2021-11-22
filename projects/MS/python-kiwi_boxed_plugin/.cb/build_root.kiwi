@@ -22,11 +22,11 @@
     <preferences profiles="Fedora34.x86_64">
         <packagemanager>dnf</packagemanager>
     </preferences>
-    <repository profiles="TW.x86_64">
+    <repository profiles="TW.x86_64" alias="TumbleWeed">
         <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
     </repository>
-    <repository profiles="Fedora34.x86_64" type="rpm-md" alias="Fedora34">
-        <source path="http://mirrors.eze.sysarmy.com/fedora/linux/releases/34/Everything/x86_64/os/"/>
+    <repository profiles="Fedora34.x86_64" alias="Fedora34" sourcetype="metalink">
+        <source path="https://mirrors.fedoraproject.org/metalink?repo=fedora-34&amp;arch=x86_64"/>
     </repository>
     <packages type="bootstrap" profiles="TW.x86_64,TW.aarch64,Fedora34.x86_64">
         <package name="build"/>
