@@ -49,8 +49,6 @@
         <package name="python3-sphinx-rtd-theme"/>
         <package name="python3-yaml"/>
         <package name="python3-testinfra"/>
-<!-- this package is required but currently WIP, https://www.debian.org/devel/wnpp/prospective.de.html
         <package name="python3-anymarkup"/>
--->
     </packages>	  
 </image>
