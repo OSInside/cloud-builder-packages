@@ -30,8 +30,6 @@
     <packages type="image" profiles="unstable.x86_64">
         <package name="obs-build"/>
         <package name="gcc"/>		     
-        <package name="devscripts"/>
-        <package name="debconf"/>
         <package name="gnupg"/>
    	    <package name="nano"/>
         <package name="python3"/>
@@ -50,5 +48,10 @@
         <package name="python3-yaml"/>
         <package name="python3-testinfra"/>
         <package name="python3-anymarkup"/>
+        <package name="build-essential"/>
+        <package name="devscripts"/>
+        <package name="debconf"/>
+        <package name="debhelper"/>
+        <package name="debhelper-compat"/>
     </packages>	  
 </image>
