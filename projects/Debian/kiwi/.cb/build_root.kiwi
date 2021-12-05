@@ -53,5 +53,6 @@
         <package name="debconf"/>
         <package name="debhelper"/>
         <package name="debhelper-compat"/>
+        <package name="dh-python"/>
     </packages>	  
 </image>
