@@ -37,6 +37,7 @@
         <package name="python3-dev"/>
         <package name="python3-all"/>
         <package name="python3-docopt"/>
+        <package name="python3-simplejson"/>
         <package name="python3-lxml"/>
         <package name="python3-mock"/>
         <package name="python3-pytest"/>
