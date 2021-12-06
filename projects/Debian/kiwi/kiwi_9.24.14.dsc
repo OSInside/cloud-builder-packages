@@ -2,7 +2,7 @@ Format: 3.0 (quilt)
 Source: kiwi
 Binary: kiwi, kiwi-dracut-lib, kiwi-dracut-oem-repart, kiwi-dracut-oem-dump, kiwi-dracut-live, kiwi-dracut-overlay, kiwi-systemdeps-core, kiwi-systemdeps-bootloaders, kiwi-systemdeps-containers, kiwi-systemdeps-iso-media, kiwi-systemdeps-filesystems, kiwi-systemdeps-disk-images, kiwi-systemdeps
 Architecture: any
-Version: 9.24.0
+Version: 9.24.14
 Maintainer: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
 Homepage: https://osinside.github.io/kiwi
 Standards-Version: 4.5.1
@@ -24,11 +24,11 @@ Package-List:
  kiwi-systemdeps-filesystems deb otherosfs optional arch=any
  kiwi-systemdeps-iso-media deb otherosfs optional arch=any
 Checksums-Sha1:
- d28f64808a0ca8e675c4ad555fd950895382c69d 939807 kiwi_9.24.0.orig.tar.gz
- 883b34a14c32f580cb05563687b6209b5ce0c6d6 4484 kiwi_9.24.0.debian.tar.xz
+ f00f83620dfef430099789eab3328475ca9d8769 930312 kiwi_9.24.14.orig.tar.gz
+ fb4f5617fde965143acf2bdf9f26e8c7aa7bfce0 4580 kiwi_9.24.14.debian.tar.xz
 Checksums-Sha256:
- fe22ba1a2e7ecd062aca812dbb6f7dffddf4f309251011b71a7f3ae6bd5fcbbc 939807 kiwi_9.24.0.orig.tar.gz
- 27c9289cd77a94d9f47f26f4da221d36b9a80538087de8f8046fa8b70badf6fd 4484 kiwi_9.24.0.debian.tar.xz
+ 3aba7e1ec69a05278c3737f218bcc70378dfba5750ffd0a0488954f5c4be4984 930312 kiwi_9.24.14.orig.tar.gz
+ 68a83359430cca7808462631ce346c539228a4886050e48a1f0b3cbcda3892c5 4580 kiwi_9.24.14.debian.tar.xz
 Files:
- 6dde7170146c32080d6d43b71a370a49 939807 kiwi_9.24.0.orig.tar.gz
- 2154e568d10fb364b06a25b6acea6976 4484 kiwi_9.24.0.debian.tar.xz
+ 624846136c9c042cdbe50e5a2cab4551 930312 kiwi_9.24.14.orig.tar.gz
+ f76c2f727c481c8a087ad3c495f90ce1 4580 kiwi_9.24.14.debian.tar.xz
