@@ -25,10 +25,10 @@ Package-List:
  kiwi-systemdeps-iso-media deb otherosfs optional arch=any
 Checksums-Sha1:
  f00f83620dfef430099789eab3328475ca9d8769 930312 kiwi_9.24.14.orig.tar.gz
- fb4f5617fde965143acf2bdf9f26e8c7aa7bfce0 4580 kiwi_9.24.14.debian.tar.xz
+ 53c41e51012f4f3e2120a67375e7a956449893ef 4556 kiwi_9.24.14.debian.tar.xz
 Checksums-Sha256:
  3aba7e1ec69a05278c3737f218bcc70378dfba5750ffd0a0488954f5c4be4984 930312 kiwi_9.24.14.orig.tar.gz
- 68a83359430cca7808462631ce346c539228a4886050e48a1f0b3cbcda3892c5 4580 kiwi_9.24.14.debian.tar.xz
+ be01c151ed1dfac42fb2ee466d91789ed870ee8b49238094d293760eec975b96 4556 kiwi_9.24.14.debian.tar.xz
 Files:
  624846136c9c042cdbe50e5a2cab4551 930312 kiwi_9.24.14.orig.tar.gz
- f76c2f727c481c8a087ad3c495f90ce1 4580 kiwi_9.24.14.debian.tar.xz
+ b2b6dbeb3e850ef80bc51b47a81610ba 4556 kiwi_9.24.14.debian.tar.xz
