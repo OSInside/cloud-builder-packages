@@ -8,7 +8,7 @@ Homepage: https://osinside.github.io/kiwi
 Standards-Version: 4.5.1
 Vcs-Browser: https://salsa.debian.org/debian/kiwi
 Vcs-Git: https://salsa.debian.org/debian/kiwi.git
-Build-Depends: debhelper-compat (= 13), dh-python, passwd, python3-all, python3-anymarkup, python3-docopt, python3-lxml, python3-mock, python3-pytest, python3-pyxattr, python3-requests, python3-setuptools, python3-sphinx, python3-sphinx-rtd-theme, python3-testinfra, python3-yaml
+Build-Depends: debhelper-compat (= 13), dh-python, passwd, python3-all, python3-anymarkup, python3-docopt, python3-lxml, python3-mock, python3-pytest, python3-pyxattr, python3-requests, python3-setuptools, python3-sphinx, python3-sphinx-rtd-theme, python3-testinfra, python3-yaml, python3-simplejson
 Package-List:
  kiwi deb otherosfs optional arch=any
  kiwi-dracut-lib deb otherosfs optional arch=any
