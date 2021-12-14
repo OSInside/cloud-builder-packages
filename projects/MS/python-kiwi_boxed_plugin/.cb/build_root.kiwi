@@ -8,6 +8,7 @@
     </description>
     <profiles>
         <profile name="TW.x86_64" description="For Tumbleweed (x86_64)"/>
+        <profile name="TW.aarch64" description="For Tumbleweed (aarch64)"/>
         <profile name="Fedora34.x86_64" description="For Fedora34 (x86_64)"/>
     </profiles>
     <preferences>
@@ -16,13 +17,13 @@
     <preferences>
         <type image="tbz"/>
     </preferences>
-    <preferences profiles="TW.x86_64">
+    <preferences profiles="TW.x86_64,TW.aarch64">
         <packagemanager>zypper</packagemanager>
     </preferences>
     <preferences profiles="Fedora34.x86_64">
         <packagemanager>dnf</packagemanager>
     </preferences>
-    <repository profiles="TW.x86_64" alias="TumbleWeed">
+    <repository profiles="TW.x86_64,TW.aarch64" alias="TumbleWeed">
         <source path="http://download.opensuse.org/tumbleweed/repo/oss"/>
     </repository>
     <repository profiles="Fedora34.x86_64" alias="Fedora34" sourcetype="metalink">
