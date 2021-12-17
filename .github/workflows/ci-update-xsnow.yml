@@ -1,0 +1,22 @@
+name: CI-Update-Xsnow
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "projects/Debian/xsnow/**"
+
+jobs:
+  trigger_obs_service:
+    name: Trigger OBS service for package xsnow
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install curl
+        run: |
+          sudo apt update && sudo apt install curl
+      - name: Send POST request
+        run: |
+          curl -H "Authorization: Token ${{ secrets.OBS_TOKEN }}" -X POST "https://api.opensuse.org/trigger/runservice?project=home:marcus.schaefer&package=xsnow"
