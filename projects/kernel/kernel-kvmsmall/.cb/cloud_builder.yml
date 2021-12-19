@@ -1,8 +1,0 @@
-schema_version: 0.1
-name: kernel-kvmsmall
-
-distributions:
-  -
-    dist: Leap15-3
-    arch: x86_64
-    runner_group: fedora
