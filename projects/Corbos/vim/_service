@@ -1,5 +1,5 @@
 #!/bin/bash
 
-/usr/lib/obs/services/corbos_scm \
+/usr/lib/obs/service/corbos_scm \
     --git https://launchpad.net/ubuntu/bionic/+source/vim \
     --outdir .
