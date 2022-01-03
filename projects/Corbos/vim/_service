@@ -1,0 +1,3 @@
+/usr/lib/obs/services/corbos_scm \
+    --git https://launchpad.net/ubuntu/bionic/+source/vim \
+    --outdir .
