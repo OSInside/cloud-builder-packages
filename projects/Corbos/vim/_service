@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://git.launchpad.net/ubuntu/bionic/+source/vim
+# is protected through credentials
+
 /usr/lib/obs/service/corbos_scm \
-    --git https://launchpad.net/ubuntu/+source/vim \
+    --git https://git.launchpad.net/ubuntu/+source/vim \
     --outdir .
