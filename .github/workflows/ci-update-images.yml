@@ -1,0 +1,19 @@
+name: CI-Update-Image-Release1
+
+on:
+  push:
+    branches:
+      - "release_1"
+    paths:
+      - "projects/images/dist_target/release_1/**"
+
+jobs:
+  trigger_obs_service:
+    name: Trigger OBS service for release_1 image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send POST request
+        run: |
+          curl -H "Authorization: Token ${{ secrets.OBS_TOKEN }}" -X POST "https://api.opensuse.org/trigger/runservice?project=home:marcus.schaefer:ORG:Release1:Images&package=release_1"
