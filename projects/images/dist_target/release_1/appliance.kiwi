@@ -30,7 +30,7 @@
     <repository type="apt-deb" alias="kiwi-next-generation" priority="1" repository_gpgcheck="false">
         <source path="obs://Virtualization:Appliances:Builder/xUbuntu_20.10"/>
     </repository>
-    <repository type="apt-deb" alias="ORG_release_1" repository_gpgcheck="false"/>
+    <repository type="apt-deb" alias="ORG_release_1" repository_gpgcheck="false">
         <source path="obs://home:marcus.schaefer:ORG:Release1/xUbuntu_20.10"/>
     </repository>
     <repository type="apt-deb" alias="Ubuntu-Focal-Universe" distribution="focal" components="main multiverse restricted universe" repository_gpgcheck="false">
