@@ -40,7 +40,6 @@
         <source path="obs://Ubuntu:20.10/standard"/>
     </repository>
     <packages type="image">
-        <package name="xsnow"/>
         <package name="grub2-themes-ubuntu-mate"/>
         <package name="plymouth-theme-sabily"/>
         <package name="plymouth"/>
@@ -48,22 +47,8 @@
         <package name="grub2-common"/>
         <package name="grub-efi-amd64-bin"/>
         <package name="linux-generic"/>
-        <package name="isolinux"/>
-        <package name="syslinux"/>
-        <package name="syslinux-common"/>
         <package name="systemd"/>
         <package name="dracut"/>
-        <package name="init"/>
-        <package name="gnupg"/>
-        <package name="iproute2"/>
-        <package name="iptables"/>
-        <package name="iputils-ping"/>
-        <package name="ifupdown"/>
-        <package name="isc-dhcp-client"/>
-        <package name="netbase"/>
-        <package name="dbus"/>
-        <package name="btrfs-progs"/>
-        <package name="xz-utils"/>
         <package name="usrmerge"/>
         <!--
             mawk is included so OBS adds it as a build dependency,
@@ -72,6 +57,7 @@
         <package name="mawk"/>
         <package name="shim"/>
         <package name="shim-signed"/>
+        <!--<package name="xsnow"/>-->
     </packages>
     <packages type="bootstrap"/>
 </image>
