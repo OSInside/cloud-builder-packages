@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.4" name="release_1">
+    <description type="system">
+        <author>Marcus Schaefer</author>
+        <contact>user@example.com</contact>
+        <specification>Release 1 image</specification>
+    </description>
+    <preferences>
+        <version>1.16.4</version>
+        <packagemanager>apt</packagemanager>
+        <bootsplash-theme>sabily</bootsplash-theme>
+        <bootloader-theme>ubuntu-mate</bootloader-theme>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+    </preferences>
+    <preferences>
+        <type image="oem" filesystem="ext4" kernelcmdline="console=ttyS0" firmware="uefi" format="qcow2">
+            <oemconfig>
+                <oem-resize>false</oem-resize>
+            </oemconfig>
+            <bootloader name="grub2" console="serial" timeout="10"/>
+        </type>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository type="apt-deb" alias="kiwi-next-generation" priority="1" repository_gpgcheck="false">
+        <source path="obs://Virtualization:Appliances:Builder/xUbuntu_20.10"/>
+    </repository>
+    <repository type="apt-deb" alias="ORG_release_1" repository_gpgcheck="false"/>
+        <source path="obs://home:marcus.schaefer:ORG:Release1/xUbuntu_20.10"/>
+    </repository>
+    <repository type="apt-deb" alias="Ubuntu-Focal-Universe" distribution="focal" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="obs://Ubuntu:20.10/universe"/>
+    </repository>
+    <repository type="apt-deb" alias="Ubuntu-Focal" distribution="focal" components="main multiverse restricted universe" repository_gpgcheck="false">
+        <source path="obs://Ubuntu:20.10/standard"/>
+    </repository>
+    <packages type="image">
+        <package name="xsnow"/>
+        <package name="grub2-themes-ubuntu-mate"/>
+        <package name="plymouth-theme-sabily"/>
+        <package name="plymouth"/>
+        <package name="grub-pc-bin"/>
+        <package name="grub2-common"/>
+        <package name="grub-efi-amd64-bin"/>
+        <package name="linux-generic"/>
+        <package name="isolinux"/>
+        <package name="syslinux"/>
+        <package name="syslinux-common"/>
+        <package name="systemd"/>
+        <package name="dracut"/>
+        <package name="init"/>
+        <package name="gnupg"/>
+        <package name="iproute2"/>
+        <package name="iptables"/>
+        <package name="iputils-ping"/>
+        <package name="ifupdown"/>
+        <package name="isc-dhcp-client"/>
+        <package name="netbase"/>
+        <package name="dbus"/>
+        <package name="btrfs-progs"/>
+        <package name="xz-utils"/>
+        <package name="usrmerge"/>
+        <!--
+            mawk is included so OBS adds it as a build dependency,
+            however this is installed by debootstrap
+        -->
+        <package name="mawk"/>
+        <package name="shim"/>
+        <package name="shim-signed"/>
+    </packages>
+    <packages type="bootstrap"/>
+</image>
