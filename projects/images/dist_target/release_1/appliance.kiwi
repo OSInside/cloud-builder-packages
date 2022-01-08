@@ -57,7 +57,7 @@
         <package name="mawk"/>
         <package name="shim"/>
         <package name="shim-signed"/>
-        <!--<package name="xsnow"/>-->
+        <package name="xsnow"/>
     </packages>
     <packages type="bootstrap"/>
 </image>
