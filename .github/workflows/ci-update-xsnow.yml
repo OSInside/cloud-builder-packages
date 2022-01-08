@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+      - "release_1"
     paths:
       - "projects/Debian/xsnow/**"
 
